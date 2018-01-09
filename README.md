@@ -128,6 +128,7 @@ If you don't set an option, the default will be used. You can [look up the defau
     "date": "rd-date",
     "dayBody": "rd-days-body",
     "dayBodyElem": "rd-day-body",
+    "dayBodyElemButton": "rd-day-body-button",
     "dayConcealed": "rd-day-concealed",
     "dayDisabled": "rd-day-disabled",
     "dayHead": "rd-days-head",

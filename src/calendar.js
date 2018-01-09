@@ -493,7 +493,7 @@ function calendar (calendarOptions) {
     month.date = offsetCal.clone();
 
     function part (data) {
-      var i, day, node;
+      var i, day, node, button;
       for (i = 0; i < data.length; i++) {
         if (tr.children.length === weekdayCount) {
           tr = dom({ type: 'tr', className: o.styles.dayRow, parent: month.body });
@@ -502,8 +502,13 @@ function calendar (calendarOptions) {
         node = dom({
           type: 'td',
           parent: tr,
-          text: day.format(o.dayFormat),
           className: validationTest(day, data.cell.join(' ').split(' ')).join(' ')
+        });
+        button = dom({
+          type: 'button',
+          parent: node,
+          text: day.format(o.dayFormat),
+          className: o.styles.dayBodyElemButton
         });
         if (data.selectable && day.date() === current) {
           selectDayElement(node);
@@ -588,18 +593,19 @@ function calendar (calendarOptions) {
 
   function pickDay (e) {
     var target = e.target;
-    if (classes.contains(target, o.styles.dayDisabled) || !classes.contains(target, o.styles.dayBodyElem)) {
+    var cell = e.target.parentElement
+    if (classes.contains(cell, o.styles.dayDisabled) || !classes.contains(target, o.styles.dayBodyElemButton)) {
       return;
     }
     var day = parseInt(text(target), 10);
-    var prev = classes.contains(target, o.styles.dayPrevMonth);
-    var next = classes.contains(target, o.styles.dayNextMonth);
-    var offset = getMonthOffset(target) - getMonthOffset(lastDayElement);
+    var prev = classes.contains(cell, o.styles.dayPrevMonth);
+    var next = classes.contains(cell, o.styles.dayNextMonth);
+    var offset = getMonthOffset(cell) - getMonthOffset(lastDayElement);
     ref.add(offset, 'months');
     if (prev || next) {
       ref.add(prev ? -1 : 1, 'months');
     }
-    selectDayElement(target);
+    selectDayElement(cell);
     ref.date(day); // must run after setting the month
     setTime(ref, inRange(ref) || ref);
     refCal = ref.clone();
