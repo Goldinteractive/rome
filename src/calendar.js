@@ -592,8 +592,9 @@ function calendar (calendarOptions) {
   }
 
   function pickDay (e) {
+    e.preventDefault();
     var target = e.target;
-    var cell = e.target.parentElement
+    var cell = e.target.parentElement;
     if (classes.contains(cell, o.styles.dayDisabled) || !classes.contains(target, o.styles.dayBodyElemButton)) {
       return;
     }
