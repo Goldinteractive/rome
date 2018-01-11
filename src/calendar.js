@@ -502,7 +502,7 @@ function calendar (calendarOptions) {
         node = dom({
           type: 'td',
           parent: tr,
-          className: validationTest(day, data.cell.join(' ').split(' ')).join(' '),
+          className: getCellClasses(day, data.cell.join(' ').split(' ')).join(' '),
           attributes: {
             'data-date': getDateString(),
             'data-day': day.day(),
@@ -522,9 +522,10 @@ function calendar (calendarOptions) {
       }
     }
 
-    function validationTest (day, cell) {
-      if (!isInRange(day, true, o.dateValidator)) { cell.push(disabled); }
-      return cell;
+    function getCellClasses (day, classes) {
+      if (!isInRange(day, true, o.dateValidator)) { classes.push(disabled); }
+      (o.dateStatusHook || Function.prototype).call(api, day.toDate(), classes);
+      return classes;
     }
 
     function hiddenWhen (value, cell) {

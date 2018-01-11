@@ -69,6 +69,7 @@ Option             | Description
 `autoHideOnClick`  | Hides the calendar when clicking away
 `date`             | The calendar shows days and allows you to navigate between months
 `dateValidator`    | Function to validate that a given date is considered valid. Receives a native `Date` parameter.
+`dateStatusHook`   | Function to set/unset status classes for given date (e.g. when valid/invalid status in not enough). Receives a native `Date` parameter and array of classes
 `dayFormat`        | Format string used to display days on the calendar
 `initialValue`     | Value used to initialize calendar. Takes `string`, `Date`, or `moment`
 `inputFormat`      | Format string used for the input field as well as the results of `rome`
@@ -112,6 +113,7 @@ If you don't set an option, the default will be used. You can [look up the defau
   "autoHideOnClick": true,
   "date": true,
   "dateValidator": Function.prototype,
+  "dateStatusSetter": Function.prototype,
   "dayFormat": "DD",
   "initialValue": null,
   "inputFormat": "YYYY-MM-DD HH:mm",

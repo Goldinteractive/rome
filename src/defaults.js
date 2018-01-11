@@ -55,6 +55,7 @@ function defaults (options, cal) {
       throw new Error('`min` to `max` range must allow for at least one time option that matches `timeInterval`');
     }
   }
+  if (o.dateStatusHook === no) { o.dateStatusHook = Function.prototype; }
   if (o.dateValidator === no) { o.dateValidator = Function.prototype; }
   if (o.timeValidator === no) { o.timeValidator = Function.prototype; }
   if (o.timeFormat === no) { o.timeFormat = 'HH:mm'; }
