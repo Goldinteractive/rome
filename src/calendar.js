@@ -41,6 +41,33 @@ function calendar (calendarOptions) {
     associated: calendarOptions.associated
   });
 
+  var matches = (function() {
+    var match = Element.prototype.matches
+           || Element.prototype.msMatchesSelector
+           || Element.prototype.webkitMatchesSelector;
+
+    return function(elem, selector) {
+      return match.call(elem, selector);
+    }
+  })();
+
+  var closest = (function() {
+    if (Element.prototype.closest) {
+      return function(elem, selector) {
+        return Element.prototype.closest.call(elem, selector);
+      }
+    }
+
+    return function(elem, selector) {
+      if (!document.documentElement.contains(elem)) return null;
+      do {
+        if (matches(elem, selector)) return el;
+        el = el.parentElement || el.parentNode;
+      } while (el !== null && el.nodeType === 1);
+      return null;
+    }
+  })();
+
   init();
   setTimeout(ready, 0);
 
@@ -638,15 +665,15 @@ function calendar (calendarOptions) {
   }
 
   function getMonthOffset (elem) {
-    var offset;
-    while (elem && elem.getAttribute) {
-      offset = elem.getAttribute(monthOffsetAttribute);
-      if (typeof offset === 'string') {
-        return parseInt(offset, 10);
+    var offset = 0;
+    var monthOffset = elem.closest('[' + monthOffsetAttribute + ']');
+    if (elem) {
+      offset = monthOffset.getAttribute(monthOffsetAttribute);
+      if (offset !== null) {
+        offset = parseInt(offset, 10);
       }
-      elem = elem.parentNode;
     }
-    return 0;
+    return offset;
   }
 
   function setTime (to, from) {
