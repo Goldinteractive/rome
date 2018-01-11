@@ -502,7 +502,13 @@ function calendar (calendarOptions) {
         node = dom({
           type: 'td',
           parent: tr,
-          className: validationTest(day, data.cell.join(' ').split(' ')).join(' ')
+          className: validationTest(day, data.cell.join(' ').split(' ')).join(' '),
+          attributes: {
+            'data-date': getDateString(),
+            'data-day': day.day(),
+            'data-month': day.month(),
+            'data-year': day.year()
+          }
         });
         button = dom({
           type: 'button',
