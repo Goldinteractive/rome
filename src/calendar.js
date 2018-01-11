@@ -612,6 +612,12 @@ function calendar (calendarOptions) {
     refCal = ref.clone();
     if (o.autoClose === true) { hideConditionally(); }
     update();
+    api.emit('select', {
+      cell: cell,
+      day: day,
+      prev: prev,
+      next: next
+    })
   }
 
   function selectDayElement (node) {

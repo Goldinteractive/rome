@@ -237,19 +237,20 @@ Returns `undefined`.
 
 Rome calendars also provide a few events you can subscribe to. These events are published through an event emitter created using [`contra`][2]. These events are listed below.
 
-Event       | Arguments   | Description
-------------|-------------|------------
-`ready`     | `[options]` | The calendar has been `.restore`d
-`destroyed` | `[]`        | The calendar has been `.destroy`ed
-`data`      | `[value]`   | The date may have been updated by the calendar. Value of `.getDateString()` is provided
-`year`      | `[year]`    | The year may have been updated by the calendar. Value of `moment.year()` is provided
-`month`     | `[month]`   | The month may have been updated by the calendar. Value of `moment.month()` is provided
-`day`       | `[day]`     | The day may have been updated by the calendar. Value of `moment.date()` is provided
-`time`      | `[time]`    | The time may have been updated by the calendar. Formatted time string is provided
-`show`      | `[]`        | The calendar has been displayed
-`hide`      | `[]`        | The calendar has been hidden
-`back`      | `[month]`   | The calendar view has been moved back a month to the value `moment.month()`
-`next`      | `[month]`   | The calendar view has been moved forward a month to the value `moment.month()`
+Event       | Arguments                    | Description
+------------|------------------------------|------------
+`ready`     | `[options]`                  | The calendar has been `.restore`d
+`destroyed` | `[]`                         | The calendar has been `.destroy`ed
+`data`      | `[value]`                    | The date may have been updated by the calendar. Value of `.getDateString()` is provided
+`year`      | `[year]`                     | The year may have been updated by the calendar. Value of `moment.year()` is provided
+`month`     | `[month]`                    | The month may have been updated by the calendar. Value of `moment.month()` is provided
+`day`       | `[day]`                      | The day may have been updated by the calendar. Value of `moment.date()` is provided
+`time`      | `[time]`                     | The time may have been updated by the calendar. Formatted time string is provided
+`show`      | `[]`                         | The calendar has been displayed
+`hide`      | `[]`                         | The calendar has been hidden
+`back`      | `[month]`                    | The calendar view has been moved back a month to the value `moment.month()`
+`next`      | `[month]`                    | The calendar view has been moved forward a month to the value `moment.month()`
+`select`    | `[{ cell, day, prev, next}]` | The user has selected a new date through the calendar view
 
 #### Date and Time Validator
 
