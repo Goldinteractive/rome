@@ -9,6 +9,7 @@ var clone = require('./clone');
 var defaults = require('./defaults');
 var momentum = require('./momentum');
 var classes = require('./classes');
+var element = require('./element');
 var noop = require('./noop');
 var no;
 
@@ -42,33 +43,6 @@ function calendar (calendarOptions) {
   var api = emitter({
     associated: calendarOptions.associated
   });
-
-  var matches = (function() {
-    var match = Element.prototype.matches
-           || Element.prototype.msMatchesSelector
-           || Element.prototype.webkitMatchesSelector;
-
-    return function(elem, selector) {
-      return match.call(elem, selector);
-    }
-  })();
-
-  var closest = (function() {
-    if (Element.prototype.closest) {
-      return function(elem, selector) {
-        return Element.prototype.closest.call(elem, selector);
-      }
-    }
-
-    return function(elem, selector) {
-      if (!document.documentElement.contains(elem)) return null;
-      do {
-        if (matches(elem, selector)) return el;
-        el = el.parentElement || el.parentNode;
-      } while (el !== null && el.nodeType === 1);
-      return null;
-    }
-  })();
 
   init();
   setTimeout(ready, 0);
@@ -673,9 +647,9 @@ function calendar (calendarOptions) {
 
   function getMonthOffset (elem) {
     var offset = 0;
-    var monthOffset = elem.closest('[' + monthOffsetAttribute + ']');
+    var monthOffsetElem = element.closest(elem, '[' + monthOffsetAttribute + ']');
     if (elem) {
-      offset = monthOffset.getAttribute(monthOffsetAttribute);
+      offset = monthOffsetElem.getAttribute(monthOffsetAttribute);
       if (offset !== null) {
         offset = parseInt(offset, 10);
       }
