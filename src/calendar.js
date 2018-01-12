@@ -513,7 +513,7 @@ function calendar (calendarOptions) {
           className: getCellClasses(day, data.cell.join(' ').split(' ')).join(' '),
           attributes: {
             'data-date': getDateString(),
-            'data-day': day.day(),
+            'data-day': day.date(),
             'data-month': day.month(),
             'data-year': day.year()
           }
