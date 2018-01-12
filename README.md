@@ -113,7 +113,7 @@ If you don't set an option, the default will be used. You can [look up the defau
   "autoHideOnClick": true,
   "date": true,
   "dateValidator": Function.prototype,
-  "dateStatusSetter": Function.prototype,
+  "dateStatusHook": Function.prototype,
   "dayFormat": "DD",
   "initialValue": null,
   "inputFormat": "YYYY-MM-DD HH:mm",
