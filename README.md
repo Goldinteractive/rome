@@ -191,6 +191,10 @@ Returns the current date, as defined by the calendar, using the provided `option
 
 Returns a copy of the `moment` object underlying the current date in the calendar. If `required: false` you'll get `null` when the input field is empty.
 
+##### `getMonths()`
+
+Returns currently displayed months data. Array with objects `{ wrapper, label, body, date }`.
+
 ##### `.destroy()`
 
 Removes the calendar from the DOM and all of its associated DOM event listeners. The only responsive API method becomes the `.restore` method described below, the rest of the API becomes no-op methods. After emitting the `destroyed` event, all event listeners are removed from the instance.

@@ -21,6 +21,8 @@ function calendar (calendarOptions) {
 
   // date variables
   var monthOffsetAttribute = 'data-rome-offset';
+  var monthAttribute = 'data-rome-month';
+  var yearAttribute = 'data-rome-year';
   var weekdays;
   var weekdayCount;
   var calendarMonths = [];
@@ -96,6 +98,7 @@ function calendar (calendarOptions) {
     api.destroyed = false;
     api.destroy = destroy.bind(api, false);
     api.emitValues = emitValues;
+    api.getMonths = getMonths;
     api.getDate = getDate;
     api.getDateString = getDateString;
     api.getMoment = getMoment;
@@ -219,6 +222,7 @@ function calendar (calendarOptions) {
 
       datebody.setAttribute(monthOffsetAttribute, i);
       calendarMonths.push({
+        wrapper: month,
         label: label,
         body: datebody
       });
@@ -381,6 +385,8 @@ function calendar (calendarOptions) {
     function updateMonth (month, i) {
       var offsetCal = refCal.clone().add(i, 'months');
       text(month.label, offsetCal.format(o.monthFormat));
+      month.wrapper.setAttribute(monthAttribute, offsetCal.month());
+      month.wrapper.setAttribute(yearAttribute, offsetCal.year());
       removeChildren(month.body);
     }
   }
@@ -708,6 +714,10 @@ function calendar (calendarOptions) {
 
   function getMoment () {
     return ref.clone();
+  }
+
+  function getMonths () {
+    return calendarMonths;
   }
 }
 
