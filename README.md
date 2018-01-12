@@ -4,7 +4,7 @@
 
 > Customizable date _(and time)_ picker. Opt-in UI, no jQuery!
 
-Rome wasn't built in a day. Browser support includes every sane browser and **IE7+**.
+Rome wasn't built in a day. Browser support includes every sane browser and **IE9+**.
 
 #### Demo!
 
