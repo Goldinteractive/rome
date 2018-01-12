@@ -135,6 +135,7 @@ function calendar (calendarOptions) {
     api.destroyed = true;
     api.destroy = napi;
     api.emitValues = napi;
+    api.getMonths = noop;
     api.getDate = noop;
     api.getDateString = noop;
     api.getMoment = noop;
